@@ -1,3 +1,5 @@
+#![doc = include_str!("../README.md")]
+
 use quick_xml::de::from_str;
 use serde::{Deserialize, Deserializer};
 

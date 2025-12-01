@@ -16,3 +16,12 @@ minijinja = "=2.9.0"
 serde_json = "=1.0.145"
 tempfile = "=3.23.0"
 webbrowser = "=1.0.6"
+
+[package.metadata.release]
+pre-release-commit-message = "Release v{{version}}"
+tag-message = ""
+pre-release-replacements = [
+    { file="README.md", search="xcsoar-tasks = \"[a-z0-9\\.-]+\"", replace="xcsoar-tasks = \"{{version}}\"" },
+]
+# Disable `cargo publish` since we use CI for publishing
+publish = false
