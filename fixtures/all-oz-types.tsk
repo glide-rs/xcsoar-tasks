@@ -1,0 +1,74 @@
+<Task type="Mixed" task_scored="1" aat_min_time="10800" start_max_speed="0" start_max_height="1500" start_max_height_ref="AGL" finish_min_height="100" finish_min_height_ref="MSL" fai_finish="0">
+  <Point type="Start">
+    <Waypoint name="Start Line" altitude="100.0">
+      <Location longitude="7.0" latitude="51.0"/>
+    </Waypoint>
+    <ObservationZone type="Line" length="10000.0"/>
+  </Point>
+  <Point type="Turn">
+    <Waypoint name="Cylinder TP" altitude="150.0">
+      <Location longitude="7.1" latitude="51.1"/>
+    </Waypoint>
+    <ObservationZone type="Cylinder" radius="500.0"/>
+  </Point>
+  <Point type="Turn">
+    <Waypoint name="Keyhole TP" altitude="200.0">
+      <Location longitude="7.2" latitude="51.0"/>
+    </Waypoint>
+    <ObservationZone type="Keyhole"/>
+  </Point>
+  <Point type="Turn">
+    <Waypoint name="FAI Sector TP" altitude="180.0">
+      <Location longitude="7.3" latitude="51.1"/>
+    </Waypoint>
+    <ObservationZone type="FAISector"/>
+  </Point>
+  <Point type="Turn">
+    <Waypoint name="Sector TP" altitude="220.0">
+      <Location longitude="7.4" latitude="51.0"/>
+    </Waypoint>
+    <ObservationZone type="Sector" radius="5000.0" start_radial="45.0" end_radial="135.0" inner_radius="1000.0"/>
+  </Point>
+  <Point type="Turn">
+    <Waypoint name="SymmetricQuadrant TP" altitude="190.0">
+      <Location longitude="7.5" latitude="51.1"/>
+    </Waypoint>
+    <ObservationZone type="SymmetricQuadrant" radius="8000.0" angle="45.0"/>
+  </Point>
+  <Point type="Turn">
+    <Waypoint name="CustomKeyhole TP" altitude="160.0">
+      <Location longitude="7.6" latitude="51.0"/>
+    </Waypoint>
+    <ObservationZone type="CustomKeyhole" radius="15000.0" angle="60.0" inner_radius="750.0"/>
+  </Point>
+  <Point type="Turn">
+    <Waypoint name="MatCylinder TP" altitude="140.0">
+      <Location longitude="7.7" latitude="51.1"/>
+    </Waypoint>
+    <ObservationZone type="MatCylinder"/>
+  </Point>
+  <Point type="Turn">
+    <Waypoint name="BGAStartSector TP" altitude="130.0">
+      <Location longitude="7.8" latitude="51.0"/>
+    </Waypoint>
+    <ObservationZone type="BGAStartSector"/>
+  </Point>
+  <Point type="Turn">
+    <Waypoint name="BGAFixedCourse TP" altitude="120.0">
+      <Location longitude="7.9" latitude="51.1"/>
+    </Waypoint>
+    <ObservationZone type="BGAFixedCourse"/>
+  </Point>
+  <Point type="Turn">
+    <Waypoint name="BGAEnhancedOption TP" altitude="110.0">
+      <Location longitude="8.0" latitude="51.0"/>
+    </Waypoint>
+    <ObservationZone type="BGAEnhancedOption"/>
+  </Point>
+  <Point type="Finish">
+    <Waypoint name="Finish Cylinder" altitude="100.0">
+      <Location longitude="8.1" latitude="51.1"/>
+    </Waypoint>
+    <ObservationZone type="Cylinder" radius="1000.0"/>
+  </Point>
+</Task>

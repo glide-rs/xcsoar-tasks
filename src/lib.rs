@@ -270,4 +270,11 @@ mod tests {
         let task = parse(xml).unwrap();
         assert_debug_snapshot!(task);
     }
+
+    #[test]
+    fn parse_all_oz_types() {
+        let xml = include_str!("../fixtures/all-oz-types.tsk");
+        let task = parse(xml).unwrap();
+        assert_debug_snapshot!(task);
+    }
 }
