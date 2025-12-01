@@ -1,0 +1,145 @@
+---
+source: src/lib.rs
+expression: task
+---
+Task {
+    task_type: RT,
+    aat_min_time: Some(
+        10800,
+    ),
+    start_requires_arm: None,
+    start_score_exit: None,
+    start_max_speed: Some(
+        60.0,
+    ),
+    start_max_height: Some(
+        0,
+    ),
+    start_max_height_ref: Some(
+        MSL,
+    ),
+    start_open_time: None,
+    start_close_time: None,
+    finish_min_height: Some(
+        0,
+    ),
+    finish_min_height_ref: Some(
+        AGL,
+    ),
+    fai_finish: Some(
+        false,
+    ),
+    pev_start_wait_time: None,
+    pev_start_window: None,
+    points: [
+        Point {
+            point_type: Start,
+            score_exit: None,
+            waypoint: Waypoint {
+                name: "095Monheim AB Dreieck",
+                altitude: Some(
+                    50.0,
+                ),
+                id: Some(
+                    "0",
+                ),
+                comment: Some(
+                    "",
+                ),
+                location: Location {
+                    longitude: 6.9322166,
+                    latitude: 51.08195,
+                },
+            },
+            observation_zone: Line {
+                length: 20000.0,
+            },
+        },
+        Point {
+            point_type: Turn,
+            score_exit: None,
+            waypoint: Waypoint {
+                name: "084Linnich Kontrollpunkt",
+                altitude: Some(
+                    100.0,
+                ),
+                id: Some(
+                    "0",
+                ),
+                comment: Some(
+                    "",
+                ),
+                location: Location {
+                    longitude: 6.277217,
+                    latitude: 50.99917,
+                },
+            },
+            observation_zone: Keyhole,
+        },
+        Point {
+            point_type: Turn,
+            score_exit: None,
+            waypoint: Waypoint {
+                name: "113Ritzeroder Duenen",
+                altitude: Some(
+                    86.0,
+                ),
+                id: Some(
+                    "0",
+                ),
+                comment: Some(
+                    "",
+                ),
+                location: Location {
+                    longitude: 6.192217,
+                    latitude: 51.176666,
+                },
+            },
+            observation_zone: Keyhole,
+        },
+        Point {
+            point_type: Turn,
+            score_exit: None,
+            waypoint: Waypoint {
+                name: "021Bergheim",
+                altitude: Some(
+                    70.0,
+                ),
+                id: Some(
+                    "0",
+                ),
+                comment: Some(
+                    "",
+                ),
+                location: Location {
+                    longitude: 6.6077833,
+                    latitude: 50.965,
+                },
+            },
+            observation_zone: Keyhole,
+        },
+        Point {
+            point_type: Finish,
+            score_exit: None,
+            waypoint: Waypoint {
+                name: "002Zielkreis",
+                altitude: Some(
+                    130.0,
+                ),
+                id: Some(
+                    "0",
+                ),
+                comment: Some(
+                    "",
+                ),
+                location: Location {
+                    longitude: 7.03695,
+                    latitude: 51.097782,
+                },
+            },
+            observation_zone: Cylinder {
+                radius: 2000.0,
+            },
+        },
+    ],
+}

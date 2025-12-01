@@ -1,0 +1,174 @@
+---
+source: src/lib.rs
+expression: task
+---
+Task {
+    task_type: AAT,
+    aat_min_time: Some(
+        12600,
+    ),
+    start_requires_arm: None,
+    start_score_exit: None,
+    start_max_speed: Some(
+        60.0,
+    ),
+    start_max_height: Some(
+        0,
+    ),
+    start_max_height_ref: Some(
+        MSL,
+    ),
+    start_open_time: None,
+    start_close_time: None,
+    finish_min_height: Some(
+        0,
+    ),
+    finish_min_height_ref: Some(
+        AGL,
+    ),
+    fai_finish: Some(
+        false,
+    ),
+    pev_start_wait_time: None,
+    pev_start_window: None,
+    points: [
+        Point {
+            point_type: Start,
+            score_exit: None,
+            waypoint: Waypoint {
+                name: "Langenfeld-Wiescheid",
+                altitude: Some(
+                    86.0,
+                ),
+                id: Some(
+                    "0",
+                ),
+                comment: Some(
+                    "",
+                ),
+                location: Location {
+                    longitude: 6.9852834,
+                    latitude: 51.141384,
+                },
+            },
+            observation_zone: Line {
+                length: 20000.0,
+            },
+        },
+        Point {
+            point_type: Area,
+            score_exit: None,
+            waypoint: Waypoint {
+                name: "Aachen Merzbrück",
+                altitude: Some(
+                    190.0,
+                ),
+                id: Some(
+                    "0",
+                ),
+                comment: Some(
+                    "",
+                ),
+                location: Location {
+                    longitude: 6.18695,
+                    latitude: 50.824165,
+                },
+            },
+            observation_zone: Cylinder {
+                radius: 10000.0,
+            },
+        },
+        Point {
+            point_type: Area,
+            score_exit: None,
+            waypoint: Waypoint {
+                name: "Bad Neuenahr",
+                altitude: Some(
+                    205.0,
+                ),
+                id: Some(
+                    "0",
+                ),
+                comment: Some(
+                    "",
+                ),
+                location: Location {
+                    longitude: 7.1375,
+                    latitude: 50.559715,
+                },
+            },
+            observation_zone: Cylinder {
+                radius: 30000.0,
+            },
+        },
+        Point {
+            point_type: Area,
+            score_exit: None,
+            waypoint: Waypoint {
+                name: "058Hambach Süd",
+                altitude: Some(
+                    7.0,
+                ),
+                id: Some(
+                    "0",
+                ),
+                comment: Some(
+                    "",
+                ),
+                location: Location {
+                    longitude: 6.491667,
+                    latitude: 50.88888,
+                },
+            },
+            observation_zone: Cylinder {
+                radius: 10000.0,
+            },
+        },
+        Point {
+            point_type: Area,
+            score_exit: None,
+            waypoint: Waypoint {
+                name: "110Remscheid Bhf",
+                altitude: Some(
+                    200.0,
+                ),
+                id: Some(
+                    "0",
+                ),
+                comment: Some(
+                    "",
+                ),
+                location: Location {
+                    longitude: 7.2,
+                    latitude: 51.17695,
+                },
+            },
+            observation_zone: Cylinder {
+                radius: 10000.0,
+            },
+        },
+        Point {
+            point_type: Finish,
+            score_exit: None,
+            waypoint: Waypoint {
+                name: "002Zielkreis",
+                altitude: Some(
+                    130.0,
+                ),
+                id: Some(
+                    "0",
+                ),
+                comment: Some(
+                    "",
+                ),
+                location: Location {
+                    longitude: 7.03695,
+                    latitude: 51.097782,
+                },
+            },
+            observation_zone: Cylinder {
+                radius: 2000.0,
+            },
+        },
+    ],
+}

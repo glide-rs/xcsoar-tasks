@@ -1,0 +1,147 @@
+---
+source: src/lib.rs
+expression: task
+---
+Task {
+    task_type: FAIGeneral,
+    aat_min_time: Some(
+        19260,
+    ),
+    start_requires_arm: None,
+    start_score_exit: None,
+    start_max_speed: Some(
+        0.0,
+    ),
+    start_max_height: Some(
+        0,
+    ),
+    start_max_height_ref: Some(
+        AGL,
+    ),
+    start_open_time: None,
+    start_close_time: None,
+    finish_min_height: Some(
+        0,
+    ),
+    finish_min_height_ref: None,
+    fai_finish: Some(
+        true,
+    ),
+    pev_start_wait_time: None,
+    pev_start_window: None,
+    points: [
+        Point {
+            point_type: Start,
+            score_exit: None,
+            waypoint: Waypoint {
+                name: "Wanlo Niersq",
+                altitude: Some(
+                    74.0,
+                ),
+                id: Some(
+                    "3675",
+                ),
+                comment: Some(
+                    "121.175 0826",
+                ),
+                location: Location {
+                    longitude: 6.39361,
+                    latitude: 51.1011,
+                },
+            },
+            observation_zone: Cylinder {
+                radius: 1000.0,
+            },
+        },
+        Point {
+            point_type: Turn,
+            score_exit: None,
+            waypoint: Waypoint {
+                name: "Weisweiler K",
+                altitude: Some(
+                    144.0,
+                ),
+                id: Some(
+                    "3649",
+                ),
+                comment: Some(
+                    "Kw 1011Ft",
+                ),
+                location: Location {
+                    longitude: 6.32278,
+                    latitude: 50.8397,
+                },
+            },
+            observation_zone: Cylinder {
+                radius: 1000.0,
+            },
+        },
+        Point {
+            point_type: Turn,
+            score_exit: None,
+            waypoint: Waypoint {
+                name: "Langenfeld W",
+                altitude: Some(
+                    86.0,
+                ),
+                id: Some(
+                    "3883",
+                ),
+                comment: Some(
+                    "122.475 0725",
+                ),
+                location: Location {
+                    longitude: 6.98528,
+                    latitude: 51.1408,
+                },
+            },
+            observation_zone: Cylinder {
+                radius: 1000.0,
+            },
+        },
+        Point {
+            point_type: Turn,
+            score_exit: None,
+            waypoint: Waypoint {
+                name: "APF001-2",
+                altitude: Some(
+                    45.0,
+                ),
+                id: Some(
+                    "3835",
+                ),
+                comment: Some(
+                    "NEAR STOMMELN",
+                ),
+                location: Location {
+                    longitude: 6.77611,
+                    latitude: 51.0372,
+                },
+            },
+            observation_zone: Cylinder {
+                radius: 1000.0,
+            },
+        },
+        Point {
+            point_type: Finish,
+            score_exit: None,
+            waypoint: Waypoint {
+                name: "Wanlo Niersq",
+                altitude: Some(
+                    74.0,
+                ),
+                id: Some(
+                    "3675",
+                ),
+                comment: Some(
+                    "121.175 0826",
+                ),
+                location: Location {
+                    longitude: 6.39361,
+                    latitude: 51.1011,
+                },
+            },
+            observation_zone: FAISector,
+        },
+    ],
+}
