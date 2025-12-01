@@ -10,7 +10,7 @@ struct Args {
 fn main() -> anyhow::Result<()> {
     let args = Args::parse();
     let xml = std::fs::read_to_string(&args.path)?;
-    let task = xcsoar_tasks::parse(&xml)?;
+    let task = xcsoar_tasks::from_str(&xml)?;
     println!("{task:#?}");
     Ok(())
 }

@@ -1,7 +1,7 @@
 #![doc = include_str!("../README.md")]
 
-use quick_xml::de::from_str;
 use serde::{Deserialize, Deserializer};
+use std::io::BufRead;
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(rename = "Task")]
@@ -243,8 +243,12 @@ pub enum ParseError {
     Xml(#[from] quick_xml::DeError),
 }
 
-pub fn parse(xml: &str) -> Result<Task, ParseError> {
-    Ok(from_str(xml)?)
+pub fn from_str(xml: &str) -> Result<Task, ParseError> {
+    Ok(quick_xml::de::from_str(xml)?)
+}
+
+pub fn from_reader(reader: impl BufRead) -> Result<Task, ParseError> {
+    Ok(quick_xml::de::from_reader(reader)?)
 }
 
 #[cfg(test)]
@@ -255,28 +259,28 @@ mod tests {
     #[test]
     fn parse_aat_task() {
         let xml = include_str!("../fixtures/aat-task.tsk");
-        let task = parse(xml).unwrap();
+        let task = from_str(xml).unwrap();
         assert_debug_snapshot!(task);
     }
 
     #[test]
     fn parse_racing_task() {
         let xml = include_str!("../fixtures/racing-task.tsk");
-        let task = parse(xml).unwrap();
+        let task = from_str(xml).unwrap();
         assert_debug_snapshot!(task);
     }
 
     #[test]
     fn parse_fai_task() {
         let xml = include_str!("../fixtures/fai-task.tsk");
-        let task = parse(xml).unwrap();
+        let task = from_str(xml).unwrap();
         assert_debug_snapshot!(task);
     }
 
     #[test]
     fn parse_all_oz_types() {
         let xml = include_str!("../fixtures/all-oz-types.tsk");
-        let task = parse(xml).unwrap();
+        let task = from_str(xml).unwrap();
         assert_debug_snapshot!(task);
     }
 }

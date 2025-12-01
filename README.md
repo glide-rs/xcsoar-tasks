@@ -15,7 +15,7 @@ xcsoar-tasks = "0.0.0"
 
 ```rust,no_run
 let xml = std::fs::read_to_string("task.tsk").unwrap();
-let task = xcsoar_tasks::parse(&xml).unwrap();
+let task = xcsoar_tasks::from_str(&xml).unwrap();
 
 println!("Task type: {:?}", task.task_type);
 for point in &task.points {

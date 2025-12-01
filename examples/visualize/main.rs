@@ -13,7 +13,7 @@ struct Args {
 fn main() -> anyhow::Result<()> {
     let args = Args::parse();
     let xml = std::fs::read_to_string(&args.path)?;
-    let task = xcsoar_tasks::parse(&xml)?;
+    let task = xcsoar_tasks::from_str(&xml)?;
     let geojson = geojson::task_to_geojson(&task);
 
     let template = include_str!("template.html.j2");
