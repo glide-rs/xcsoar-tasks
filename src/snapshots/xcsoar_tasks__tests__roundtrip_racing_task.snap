@@ -5,19 +5,19 @@ expression: serialized
 <Task type="RT" aat_min_time="10800" start_max_speed="60" start_max_height="0" start_max_height_ref="MSL" finish_min_height="0" finish_min_height_ref="AGL" fai_finish="0">
     <Point type="Start">
         <Waypoint name="095Monheim AB Dreieck" altitude="50" id="0" comment="">
-            <Location longitude="6.9322166" latitude="51.08195"/>
+            <Location longitude="6.9322167" latitude="51.08195"/>
         </Waypoint>
         <ObservationZone type="Line" length="20000"/>
     </Point>
     <Point type="Turn">
         <Waypoint name="084Linnich Kontrollpunkt" altitude="100" id="0" comment="">
-            <Location longitude="6.277217" latitude="50.99917"/>
+            <Location longitude="6.2772167" latitude="50.9991667"/>
         </Waypoint>
         <ObservationZone type="Keyhole"/>
     </Point>
     <Point type="Turn">
         <Waypoint name="113Ritzeroder Duenen" altitude="86" id="0" comment="">
-            <Location longitude="6.192217" latitude="51.176666"/>
+            <Location longitude="6.1922167" latitude="51.1766667"/>
         </Waypoint>
         <ObservationZone type="Keyhole"/>
     </Point>
@@ -29,7 +29,7 @@ expression: serialized
     </Point>
     <Point type="Finish">
         <Waypoint name="002Zielkreis" altitude="130" id="0" comment="">
-            <Location longitude="7.03695" latitude="51.097782"/>
+            <Location longitude="7.03695" latitude="51.0977833"/>
         </Waypoint>
         <ObservationZone type="Cylinder" radius="2000"/>
     </Point>

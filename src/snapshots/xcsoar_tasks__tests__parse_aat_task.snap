@@ -47,8 +47,8 @@ Task {
                     "",
                 ),
                 location: Location {
-                    longitude: 6.9852834,
-                    latitude: 51.141384,
+                    longitude: 6.9852833,
+                    latitude: 51.1413833,
                 },
             },
             observation_zone: Line {
@@ -71,7 +71,7 @@ Task {
                 ),
                 location: Location {
                     longitude: 6.18695,
-                    latitude: 50.824165,
+                    latitude: 50.8241667,
                 },
             },
             observation_zone: Cylinder {
@@ -94,7 +94,7 @@ Task {
                 ),
                 location: Location {
                     longitude: 7.1375,
-                    latitude: 50.559715,
+                    latitude: 50.5597167,
                 },
             },
             observation_zone: Cylinder {
@@ -116,8 +116,8 @@ Task {
                     "",
                 ),
                 location: Location {
-                    longitude: 6.491667,
-                    latitude: 50.88888,
+                    longitude: 6.4916667,
+                    latitude: 50.8888833,
                 },
             },
             observation_zone: Cylinder {
@@ -163,7 +163,7 @@ Task {
                 ),
                 location: Location {
                     longitude: 7.03695,
-                    latitude: 51.097782,
+                    latitude: 51.0977833,
                 },
             },
             observation_zone: Cylinder {

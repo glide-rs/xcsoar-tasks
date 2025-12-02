@@ -38,11 +38,11 @@ pub struct Task {
     #[serde(
         rename = "@start_max_speed",
         default,
-        deserialize_with = "de_opt_f32",
-        serialize_with = "ser_opt_f32",
+        deserialize_with = "de_opt_f64",
+        serialize_with = "ser_opt_f64",
         skip_serializing_if = "Option::is_none"
     )]
-    pub start_max_speed: Option<f32>,
+    pub start_max_speed: Option<f64>,
 
     #[serde(
         rename = "@start_max_height",
@@ -182,11 +182,11 @@ pub struct Waypoint {
     #[serde(
         rename = "@altitude",
         default,
-        deserialize_with = "de_opt_f32",
-        serialize_with = "ser_opt_f32",
+        deserialize_with = "de_opt_f64",
+        serialize_with = "ser_opt_f64",
         skip_serializing_if = "Option::is_none"
     )]
-    pub altitude: Option<f32>,
+    pub altitude: Option<f64>,
 
     #[serde(rename = "@id", default, skip_serializing_if = "Option::is_none")]
     pub id: Option<String>,
@@ -202,17 +202,17 @@ pub struct Waypoint {
 pub struct Location {
     #[serde(
         rename = "@longitude",
-        deserialize_with = "de_f32",
-        serialize_with = "ser_f32"
+        deserialize_with = "de_f64",
+        serialize_with = "ser_f64"
     )]
-    pub longitude: f32,
+    pub longitude: f64,
 
     #[serde(
         rename = "@latitude",
-        deserialize_with = "de_f32",
-        serialize_with = "ser_f32"
+        deserialize_with = "de_f64",
+        serialize_with = "ser_f64"
     )]
-    pub latitude: f32,
+    pub latitude: f64,
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize, Serialize)]
@@ -222,20 +222,20 @@ pub enum ObservationZone {
     Cylinder {
         #[serde(
             rename = "@radius",
-            deserialize_with = "de_f32",
-            serialize_with = "ser_f32"
+            deserialize_with = "de_f64",
+            serialize_with = "ser_f64"
         )]
-        radius: f32,
+        radius: f64,
     },
 
     /// A straight line gate, typically used for start/finish.
     Line {
         #[serde(
             rename = "@length",
-            deserialize_with = "de_f32",
-            serialize_with = "ser_f32"
+            deserialize_with = "de_f64",
+            serialize_with = "ser_f64"
         )]
-        length: f32,
+        length: f64,
     },
 
     /// DAeC keyhole: 500m cylinder or 10km 90° sector. Scored from center.
@@ -250,30 +250,30 @@ pub enum ObservationZone {
     Sector {
         #[serde(
             rename = "@radius",
-            deserialize_with = "de_f32",
-            serialize_with = "ser_f32"
+            deserialize_with = "de_f64",
+            serialize_with = "ser_f64"
         )]
-        radius: f32,
+        radius: f64,
         #[serde(
             rename = "@start_radial",
-            deserialize_with = "de_f32",
-            serialize_with = "ser_f32"
+            deserialize_with = "de_f64",
+            serialize_with = "ser_f64"
         )]
-        start_radial: f32,
+        start_radial: f64,
         #[serde(
             rename = "@end_radial",
-            deserialize_with = "de_f32",
-            serialize_with = "ser_f32"
+            deserialize_with = "de_f64",
+            serialize_with = "ser_f64"
         )]
-        end_radial: f32,
+        end_radial: f64,
         #[serde(
             rename = "@inner_radius",
             default,
-            deserialize_with = "de_opt_f32",
-            serialize_with = "ser_opt_f32",
+            deserialize_with = "de_opt_f64",
+            serialize_with = "ser_opt_f64",
             skip_serializing_if = "Option::is_none"
         )]
-        inner_radius: Option<f32>,
+        inner_radius: Option<f64>,
     },
 
     /// A symmetric quadrant with configurable radius and angle.
@@ -283,19 +283,19 @@ pub enum ObservationZone {
         #[serde(
             rename = "@radius",
             default,
-            deserialize_with = "de_opt_f32",
-            serialize_with = "ser_opt_f32",
+            deserialize_with = "de_opt_f64",
+            serialize_with = "ser_opt_f64",
             skip_serializing_if = "Option::is_none"
         )]
-        radius: Option<f32>,
+        radius: Option<f64>,
         #[serde(
             rename = "@angle",
             default,
-            deserialize_with = "de_opt_f32",
-            serialize_with = "ser_opt_f32",
+            deserialize_with = "de_opt_f64",
+            serialize_with = "ser_opt_f64",
             skip_serializing_if = "Option::is_none"
         )]
-        angle: Option<f32>,
+        angle: Option<f64>,
     },
 
     /// A keyhole with configurable outer radius, inner radius, and sector angle.
@@ -305,27 +305,27 @@ pub enum ObservationZone {
         #[serde(
             rename = "@radius",
             default,
-            deserialize_with = "de_opt_f32",
-            serialize_with = "ser_opt_f32",
+            deserialize_with = "de_opt_f64",
+            serialize_with = "ser_opt_f64",
             skip_serializing_if = "Option::is_none"
         )]
-        radius: Option<f32>,
+        radius: Option<f64>,
         #[serde(
             rename = "@angle",
             default,
-            deserialize_with = "de_opt_f32",
-            serialize_with = "ser_opt_f32",
+            deserialize_with = "de_opt_f64",
+            serialize_with = "ser_opt_f64",
             skip_serializing_if = "Option::is_none"
         )]
-        angle: Option<f32>,
+        angle: Option<f64>,
         #[serde(
             rename = "@inner_radius",
             default,
-            deserialize_with = "de_opt_f32",
-            serialize_with = "ser_opt_f32",
+            deserialize_with = "de_opt_f64",
+            serialize_with = "ser_opt_f64",
             skip_serializing_if = "Option::is_none"
         )]
-        inner_radius: Option<f32>,
+        inner_radius: Option<f64>,
     },
 
     /// Fixed 1-mile radius cylinder for Modified Area Tasks.
@@ -341,12 +341,12 @@ pub enum ObservationZone {
     BGAEnhancedOption,
 }
 
-fn de_f32<'de, D: Deserializer<'de>>(deserializer: D) -> Result<f32, D::Error> {
+fn de_f64<'de, D: Deserializer<'de>>(deserializer: D) -> Result<f64, D::Error> {
     let s: String = Deserialize::deserialize(deserializer)?;
     s.parse().map_err(serde::de::Error::custom)
 }
 
-fn de_opt_f32<'de, D: Deserializer<'de>>(deserializer: D) -> Result<Option<f32>, D::Error> {
+fn de_opt_f64<'de, D: Deserializer<'de>>(deserializer: D) -> Result<Option<f64>, D::Error> {
     let s: Option<String> = Deserialize::deserialize(deserializer)?;
     match s {
         Some(s) => s.parse().map(Some).map_err(serde::de::Error::custom),
@@ -366,11 +366,11 @@ fn de_opt_bool<'de, D: Deserializer<'de>>(deserializer: D) -> Result<Option<bool
     }
 }
 
-fn ser_f32<S: Serializer>(value: &f32, serializer: S) -> Result<S::Ok, S::Error> {
+fn ser_f64<S: Serializer>(value: &f64, serializer: S) -> Result<S::Ok, S::Error> {
     serializer.serialize_str(&value.to_string())
 }
 
-fn ser_opt_f32<S: Serializer>(value: &Option<f32>, serializer: S) -> Result<S::Ok, S::Error> {
+fn ser_opt_f64<S: Serializer>(value: &Option<f64>, serializer: S) -> Result<S::Ok, S::Error> {
     match value {
         Some(v) => serializer.serialize_str(&v.to_string()),
         None => serializer.serialize_none(),

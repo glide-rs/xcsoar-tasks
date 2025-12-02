@@ -47,7 +47,7 @@ Task {
                     "",
                 ),
                 location: Location {
-                    longitude: 6.9322166,
+                    longitude: 6.9322167,
                     latitude: 51.08195,
                 },
             },
@@ -70,8 +70,8 @@ Task {
                     "",
                 ),
                 location: Location {
-                    longitude: 6.277217,
-                    latitude: 50.99917,
+                    longitude: 6.2772167,
+                    latitude: 50.9991667,
                 },
             },
             observation_zone: Keyhole,
@@ -91,8 +91,8 @@ Task {
                     "",
                 ),
                 location: Location {
-                    longitude: 6.192217,
-                    latitude: 51.176666,
+                    longitude: 6.1922167,
+                    latitude: 51.1766667,
                 },
             },
             observation_zone: Keyhole,
@@ -134,7 +134,7 @@ Task {
                 ),
                 location: Location {
                     longitude: 7.03695,
-                    latitude: 51.097782,
+                    latitude: 51.0977833,
                 },
             },
             observation_zone: Cylinder {

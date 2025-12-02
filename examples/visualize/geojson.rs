@@ -54,12 +54,7 @@ fn generate_course_line(task: &Task) -> Option<Value> {
     let coordinates: Vec<[f64; 2]> = task
         .points
         .iter()
-        .map(|p| {
-            [
-                p.waypoint.location.longitude as f64,
-                p.waypoint.location.latitude as f64,
-            ]
-        })
+        .map(|p| [p.waypoint.location.longitude, p.waypoint.location.latitude])
         .collect();
 
     Some(json!({
@@ -129,7 +124,7 @@ fn generate_zone_geometry(
 
         ObservationZone::FAISector => Some(generate_sector_geometry(
             center,
-            FAI_SECTOR_RADIUS as f32,
+            FAI_SECTOR_RADIUS,
             bisector,
             90.0,
             None,
@@ -150,7 +145,7 @@ fn generate_zone_geometry(
 
         ObservationZone::SymmetricQuadrant { radius, angle } => {
             let radius = radius.unwrap_or(10000.0);
-            let angle = angle.unwrap_or(90.0) as f64;
+            let angle = angle.unwrap_or(90.0);
             Some(generate_sector_geometry(
                 center, radius, bisector, angle, None,
             ))
@@ -166,7 +161,7 @@ fn generate_zone_geometry(
             inner_radius,
         } => {
             let radius = radius.unwrap_or(10000.0);
-            let angle = angle.unwrap_or(90.0) as f64;
+            let angle = angle.unwrap_or(90.0);
             let inner_radius = inner_radius.unwrap_or(500.0);
             Some(generate_keyhole_geometry(
                 center,
@@ -191,8 +186,8 @@ fn generate_zone_geometry(
     }
 }
 
-fn generate_circle_geometry(center: Location, radius: f32) -> Value {
-    let coords = generate_circle_coords(center, radius as f64);
+fn generate_circle_geometry(center: Location, radius: f64) -> Value {
+    let coords = generate_circle_coords(center, radius);
     json!({
         "type": "Polygon",
         "coordinates": [coords]
@@ -205,13 +200,13 @@ fn generate_circle_coords(center: Location, radius: f64) -> Vec<[f64; 2]> {
         let angle = (i as f64 / CIRCLE_POINTS as f64) * 2.0 * PI;
         let bearing = angle.to_degrees();
         let point = destination_point(center, bearing, radius);
-        coords.push([point.longitude as f64, point.latitude as f64]);
+        coords.push([point.longitude, point.latitude]);
     }
     coords
 }
 
-fn generate_line_geometry(center: Location, length: f32, bisector: f64) -> Value {
-    let half_length = length as f64 / 2.0;
+fn generate_line_geometry(center: Location, length: f64, bisector: f64) -> Value {
+    let half_length = length / 2.0;
     let perpendicular_left = normalize_angle(bisector + 90.0);
     let perpendicular_right = normalize_angle(bisector - 90.0);
 
@@ -229,22 +224,16 @@ fn generate_line_geometry(center: Location, length: f32, bisector: f64) -> Value
 
 fn generate_sector_geometry(
     center: Location,
-    radius: f32,
+    radius: f64,
     bisector: f64,
     angle: f64,
-    inner_radius: Option<f32>,
+    inner_radius: Option<f64>,
 ) -> Value {
     let half_angle = angle / 2.0;
     let start_angle = normalize_angle(bisector - half_angle);
     let end_angle = normalize_angle(bisector + half_angle);
 
-    let coords = generate_sector_coords(
-        center,
-        radius as f64,
-        start_angle,
-        end_angle,
-        inner_radius.map(|r| r as f64),
-    );
+    let coords = generate_sector_coords(center, radius, start_angle, end_angle, inner_radius);
 
     json!({
         "type": "Polygon",
@@ -254,18 +243,12 @@ fn generate_sector_geometry(
 
 fn generate_sector_from_radials(
     center: Location,
-    radius: f32,
-    start_radial: f32,
-    end_radial: f32,
-    inner_radius: Option<f32>,
+    radius: f64,
+    start_radial: f64,
+    end_radial: f64,
+    inner_radius: Option<f64>,
 ) -> Value {
-    let coords = generate_sector_coords(
-        center,
-        radius as f64,
-        start_radial as f64,
-        end_radial as f64,
-        inner_radius.map(|r| r as f64),
-    );
+    let coords = generate_sector_coords(center, radius, start_radial, end_radial, inner_radius);
 
     json!({
         "type": "Polygon",
@@ -294,7 +277,7 @@ fn generate_sector_coords(
         let angle = start + t * sweep;
         let bearing = angle.to_degrees();
         let point = destination_point(center, bearing, radius);
-        coords.push([point.longitude as f64, point.latitude as f64]);
+        coords.push([point.longitude, point.latitude]);
     }
 
     if let Some(inner_r) = inner_radius {
@@ -304,11 +287,11 @@ fn generate_sector_coords(
             let angle = start + t * sweep;
             let bearing = angle.to_degrees();
             let point = destination_point(center, bearing, inner_r);
-            coords.push([point.longitude as f64, point.latitude as f64]);
+            coords.push([point.longitude, point.latitude]);
         }
     } else {
         // Close to center
-        coords.push([center.longitude as f64, center.latitude as f64]);
+        coords.push([center.longitude, center.latitude]);
     }
 
     // Close the polygon
@@ -318,8 +301,8 @@ fn generate_sector_coords(
 
 fn generate_keyhole_geometry(
     center: Location,
-    outer_radius: f32,
-    inner_radius: f32,
+    outer_radius: f64,
+    inner_radius: f64,
     angle: f64,
     bisector: f64,
 ) -> Value {
@@ -339,8 +322,8 @@ fn generate_keyhole_geometry(
         let t = i as f64 / arc_points as f64;
         let angle = start_rad + t * sweep;
         let bearing = angle.to_degrees();
-        let point = destination_point(center, bearing, outer_radius as f64);
-        coords.push([point.longitude as f64, point.latitude as f64]);
+        let point = destination_point(center, bearing, outer_radius);
+        coords.push([point.longitude, point.latitude]);
     }
 
     // Connect to inner circle at end_angle
@@ -350,8 +333,8 @@ fn generate_keyhole_geometry(
         let t = i as f64 / CIRCLE_POINTS as f64;
         let angle = end_rad + t * inner_sweep;
         let bearing = angle.to_degrees();
-        let point = destination_point(center, bearing, inner_radius as f64);
-        coords.push([point.longitude as f64, point.latitude as f64]);
+        let point = destination_point(center, bearing, inner_radius);
+        coords.push([point.longitude, point.latitude]);
     }
 
     // Close the polygon
@@ -411,9 +394,9 @@ fn calculate_bisector(bearing_in: Option<f64>, bearing_out: Option<f64>) -> f64 
 }
 
 fn calculate_bearing(from: Location, to: Location) -> f64 {
-    let lat1 = (from.latitude as f64).to_radians();
-    let lat2 = (to.latitude as f64).to_radians();
-    let delta_lon = ((to.longitude - from.longitude) as f64).to_radians();
+    let lat1 = (from.latitude).to_radians();
+    let lat2 = (to.latitude).to_radians();
+    let delta_lon = (to.longitude - from.longitude).to_radians();
 
     let y = delta_lon.sin() * lat2.cos();
     let x = lat1.cos() * lat2.sin() - lat1.sin() * lat2.cos() * delta_lon.cos();
@@ -422,8 +405,8 @@ fn calculate_bearing(from: Location, to: Location) -> f64 {
 }
 
 fn destination_point(from: Location, bearing: f64, distance: f64) -> Location {
-    let lat1 = (from.latitude as f64).to_radians();
-    let lon1 = (from.longitude as f64).to_radians();
+    let lat1 = (from.latitude).to_radians();
+    let lon1 = (from.longitude).to_radians();
     let bearing_rad = bearing.to_radians();
     let angular_distance = distance / EARTH_RADIUS;
 
@@ -436,8 +419,8 @@ fn destination_point(from: Location, bearing: f64, distance: f64) -> Location {
             .atan2(angular_distance.cos() - lat1.sin() * lat2.sin());
 
     Location {
-        latitude: lat2.to_degrees() as f32,
-        longitude: lon2.to_degrees() as f32,
+        latitude: lat2.to_degrees(),
+        longitude: lon2.to_degrees(),
     }
 }
 
@@ -489,7 +472,7 @@ mod tests {
     #[test]
     fn geojson_aat_task() {
         let xml = include_str!("../../fixtures/aat-task.tsk");
-        let task = xcsoar_tasks::parse(xml).unwrap();
+        let task = xcsoar_tasks::from_str(xml).unwrap();
         let geojson = task_to_geojson(&task);
         assert_json_snapshot!(geojson);
     }
@@ -497,7 +480,7 @@ mod tests {
     #[test]
     fn geojson_racing_task() {
         let xml = include_str!("../../fixtures/racing-task.tsk");
-        let task = xcsoar_tasks::parse(xml).unwrap();
+        let task = xcsoar_tasks::from_str(xml).unwrap();
         let geojson = task_to_geojson(&task);
         assert_json_snapshot!(geojson);
     }
@@ -505,7 +488,7 @@ mod tests {
     #[test]
     fn geojson_fai_task() {
         let xml = include_str!("../../fixtures/fai-task.tsk");
-        let task = xcsoar_tasks::parse(xml).unwrap();
+        let task = xcsoar_tasks::from_str(xml).unwrap();
         let geojson = task_to_geojson(&task);
         assert_json_snapshot!(geojson);
     }
