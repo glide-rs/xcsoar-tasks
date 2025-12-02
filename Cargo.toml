@@ -1,7 +1,7 @@
 [package]
 name = "xcsoar-tasks"
 version = "0.0.0"
-description = "A Rust library for parsing XCSoar task files"
+description = "A Rust library for parsing and writing XCSoar task files"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/glide-rs/xcsoar-tasks"
 edition = "2024"

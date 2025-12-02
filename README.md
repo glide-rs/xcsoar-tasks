@@ -1,6 +1,6 @@
 # xcsoar-tasks
 
-A Rust library for parsing [XCSoar](https://xcsoar.org/) task files. 
+A Rust library for parsing and writing [XCSoar](https://xcsoar.org/) task files. 
 
 ## Installation
 

@@ -1,0 +1,36 @@
+---
+source: src/lib.rs
+expression: serialized
+---
+<Task type="FAIGeneral" aat_min_time="19260" start_max_speed="0" start_max_height="0" start_max_height_ref="AGL" finish_min_height="0" fai_finish="1">
+    <Point type="Start">
+        <Waypoint name="Wanlo Niersq" altitude="74" id="3675" comment="121.175 0826">
+            <Location longitude="6.39361" latitude="51.1011"/>
+        </Waypoint>
+        <ObservationZone type="Cylinder" radius="1000"/>
+    </Point>
+    <Point type="Turn">
+        <Waypoint name="Weisweiler K" altitude="144" id="3649" comment="Kw 1011Ft">
+            <Location longitude="6.32278" latitude="50.8397"/>
+        </Waypoint>
+        <ObservationZone type="Cylinder" radius="1000"/>
+    </Point>
+    <Point type="Turn">
+        <Waypoint name="Langenfeld W" altitude="86" id="3883" comment="122.475 0725">
+            <Location longitude="6.98528" latitude="51.1408"/>
+        </Waypoint>
+        <ObservationZone type="Cylinder" radius="1000"/>
+    </Point>
+    <Point type="Turn">
+        <Waypoint name="APF001-2" altitude="45" id="3835" comment="NEAR STOMMELN">
+            <Location longitude="6.77611" latitude="51.0372"/>
+        </Waypoint>
+        <ObservationZone type="Cylinder" radius="1000"/>
+    </Point>
+    <Point type="Finish">
+        <Waypoint name="Wanlo Niersq" altitude="74" id="3675" comment="121.175 0826">
+            <Location longitude="6.39361" latitude="51.1011"/>
+        </Waypoint>
+        <ObservationZone type="FAISector"/>
+    </Point>
+</Task>
