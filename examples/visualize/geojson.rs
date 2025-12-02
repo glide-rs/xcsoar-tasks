@@ -1,8 +1,8 @@
+use geo::{Bearing, Destination, Haversine, Point as GeoPoint};
 use serde_json::{Value, json};
 use std::f64::consts::PI;
 use xcsoar_tasks::{Location, ObservationZone, Point, PointType, Task};
 
-const EARTH_RADIUS: f64 = 6371000.0; // meters
 const CIRCLE_POINTS: usize = 64;
 const FAI_SECTOR_RADIUS: f64 = 20000.0; // 20km for visualization (technically infinite)
 
@@ -394,33 +394,22 @@ fn calculate_bisector(bearing_in: Option<f64>, bearing_out: Option<f64>) -> f64 
 }
 
 fn calculate_bearing(from: Location, to: Location) -> f64 {
-    let lat1 = (from.latitude).to_radians();
-    let lat2 = (to.latitude).to_radians();
-    let delta_lon = (to.longitude - from.longitude).to_radians();
-
-    let y = delta_lon.sin() * lat2.cos();
-    let x = lat1.cos() * lat2.sin() - lat1.sin() * lat2.cos() * delta_lon.cos();
-
-    normalize_angle(y.atan2(x).to_degrees())
+    let bearing = Haversine.bearing(
+        GeoPoint::new(from.longitude, from.latitude),
+        GeoPoint::new(to.longitude, to.latitude),
+    );
+    normalize_angle(bearing)
 }
 
 fn destination_point(from: Location, bearing: f64, distance: f64) -> Location {
-    let lat1 = (from.latitude).to_radians();
-    let lon1 = (from.longitude).to_radians();
-    let bearing_rad = bearing.to_radians();
-    let angular_distance = distance / EARTH_RADIUS;
-
-    let lat2 = (lat1.sin() * angular_distance.cos()
-        + lat1.cos() * angular_distance.sin() * bearing_rad.cos())
-    .asin();
-
-    let lon2 = lon1
-        + (bearing_rad.sin() * angular_distance.sin() * lat1.cos())
-            .atan2(angular_distance.cos() - lat1.sin() * lat2.sin());
-
+    let result = Haversine.destination(
+        GeoPoint::new(from.longitude, from.latitude),
+        bearing,
+        distance,
+    );
     Location {
-        latitude: lat2.to_degrees(),
-        longitude: lon2.to_degrees(),
+        latitude: result.y(),
+        longitude: result.x(),
     }
 }
 
