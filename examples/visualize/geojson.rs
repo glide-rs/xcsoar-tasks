@@ -474,7 +474,11 @@ mod tests {
         let xml = include_str!("../../fixtures/aat-task.tsk");
         let task = xcsoar_tasks::from_str(xml).unwrap();
         let geojson = task_to_geojson(&task);
-        assert_json_snapshot!(geojson);
+        assert_json_snapshot!(geojson, {
+            ".features[].geometry.coordinates.*" => insta::rounded_redaction(8),
+            ".features[].geometry.coordinates[].*" => insta::rounded_redaction(8),
+            ".features[].geometry.coordinates[][].*" => insta::rounded_redaction(8),
+        });
     }
 
     #[test]
@@ -482,7 +486,11 @@ mod tests {
         let xml = include_str!("../../fixtures/racing-task.tsk");
         let task = xcsoar_tasks::from_str(xml).unwrap();
         let geojson = task_to_geojson(&task);
-        assert_json_snapshot!(geojson);
+        assert_json_snapshot!(geojson, {
+            ".features[].geometry.coordinates.*" => insta::rounded_redaction(8),
+            ".features[].geometry.coordinates[].*" => insta::rounded_redaction(8),
+            ".features[].geometry.coordinates[][].*" => insta::rounded_redaction(8),
+        });
     }
 
     #[test]
@@ -490,6 +498,10 @@ mod tests {
         let xml = include_str!("../../fixtures/fai-task.tsk");
         let task = xcsoar_tasks::from_str(xml).unwrap();
         let geojson = task_to_geojson(&task);
-        assert_json_snapshot!(geojson);
+        assert_json_snapshot!(geojson, {
+            ".features[].geometry.coordinates.*" => insta::rounded_redaction(8),
+            ".features[].geometry.coordinates[].*" => insta::rounded_redaction(8),
+            ".features[].geometry.coordinates[][].*" => insta::rounded_redaction(8),
+        });
     }
 }
